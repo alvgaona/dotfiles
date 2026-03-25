@@ -1,0 +1,6 @@
+[gcloud]
+disabled = true
+
+[pixi]
+disabled = false
+

@@ -1,0 +1,8 @@
+. "$HOME/.cargo/env"
+
+export EDITOR=nvim
+export BUN_INSTALL="$HOME/.bun"
+export NVM_DIR="$HOME/.nvm"
+export QT_QPA_PLATFORM_PLUGIN_PATH=/Users/alvaro/git/lidar-odometry/.pixi/envs/default/lib/python3.11/site-packages/PyQt6/Qt6/plugins/platforms
+
+[ -f "$HOME/.secrets" ] && . "$HOME/.secrets"

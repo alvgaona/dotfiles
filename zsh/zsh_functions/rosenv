@@ -1,0 +1,54 @@
+rosenv() {
+    case "$1" in
+        activate)
+            if [ -z "$2" ]; then
+                echo "Error: rosenv activate requires a distribution name"
+                echo "Available: $(command rosenv list --short 2>/dev/null || echo 'run rosenv setup')"
+                return 1
+            fi
+
+            local script
+            script=$(command rosenv activate "$2" 2>&1)
+            if [ $? -eq 0 ]; then
+                eval "$script"
+                echo "✓ Switched to ROS 2 $2"
+            else
+                echo "$script" >&2
+                return 1
+            fi
+            ;;
+
+        deactivate)
+            if [ -z "$ROS_DISTRO" ]; then
+                echo "No ROS distribution active"
+                return 1
+            fi
+
+            local distro="$ROS_DISTRO"
+            eval "$(command rosenv deactivate)"
+            echo "✓ Deactivated ROS 2 $distro"
+            ;;
+
+        status)
+            if [ -n "$ROS_DISTRO" ]; then
+                echo "ROS 2 $ROS_DISTRO is active"
+                echo ""
+                [ -n "$ROS_VERSION" ] && echo "  ROS_VERSION:       $ROS_VERSION"
+                echo "  ROS_DISTRO:        $ROS_DISTRO"
+                [ -n "$AMENT_PREFIX_PATH" ] && echo "  AMENT_PREFIX_PATH: ${AMENT_PREFIX_PATH%%:*}..."
+
+                if command -v ros2 &>/dev/null; then
+                    echo ""
+                    echo "ROS 2 CLI:"
+                    echo "  ✓ $(which ros2)"
+                fi
+            else
+                command rosenv status
+            fi
+            ;;
+
+        *)
+            command rosenv "$@"
+            ;;
+    esac
+}

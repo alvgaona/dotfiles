@@ -1,0 +1,4 @@
+.secrets
+.zcompdump*
+.DS_Store
+*.zwc

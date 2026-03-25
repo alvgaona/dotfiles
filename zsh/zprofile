@@ -1,0 +1,9 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export PATH="/opt/nvim-macos-arm64/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.juliaup/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/Users/alvaro/.pixi/bin:$PATH"
+
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :

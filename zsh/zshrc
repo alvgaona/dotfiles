@@ -1,0 +1,30 @@
+autoload -Uz compinit
+if [ "$(find "$HOME/.cache/zsh/.zcompdump" -mtime -1 2>/dev/null)" ]; then
+    compinit -C -d "$HOME/.cache/zsh/.zcompdump"
+else
+    compinit -d "$HOME/.cache/zsh/.zcompdump"
+fi
+
+source "$HOME/.cache/starship-init.zsh"
+source "$HOME/.cache/zoxide-init.zsh"
+
+lazy_load_nvm() {
+    unset -f nvm node npm npx
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+}
+
+nvm() { lazy_load_nvm; nvm "$@"; }
+node() { lazy_load_nvm; node "$@"; }
+npm() { lazy_load_nvm; npm "$@"; }
+npx() { lazy_load_nvm; npx "$@"; }
+
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+
+[ -f "$HOME/.zsh_aliases" ] && . "$HOME/.zsh_aliases"
+
+[ -f "$HOME/.zsh_functions/rosenv" ] && . "$HOME/.zsh_functions/rosenv"
+
+if command -v ros2cli &>/dev/null; then
+    eval "$(ros2cli completions zsh)"
+fi
