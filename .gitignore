@@ -2,3 +2,5 @@
 .zcompdump*
 .DS_Store
 *.zwc
+result
+result-*
