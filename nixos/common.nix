@@ -35,6 +35,7 @@
     fd
     jq
     htop
+    btop
     tree
     lsd
     ghostty.terminfo
