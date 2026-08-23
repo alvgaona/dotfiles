@@ -1,20 +1,7 @@
 { pkgs, ... }:
 
 {
-  # Pinned nixos-unstable as pkgs.unstable, for packages that move faster than the stable
-  # channel. Exposed as an overlay so every module can reach it, not just this one.
-  # Bump: nix-prefetch-url --unpack https://github.com/NixOS/nixpkgs/archive/<rev>.tar.gz
-  nixpkgs.overlays = [
-    (final: prev: {
-      unstable = import
-        (fetchTarball {
-          url = "https://github.com/NixOS/nixpkgs/archive/2c423e03bbafcff28bfadc6781a4a8257f205cb5.tar.gz";
-          sha256 = "0sncav0zwd301731dh1pqdfgwiak5af6b5gg178wy0zcrdsidpkn";
-        })
-        { inherit (prev.stdenv.hostPlatform) system; };
-    })
-  ];
-
+  # pkgs.unstable comes from the nixpkgs-unstable flake input; see flake.nix.
   time.timeZone = "Europe/Madrid";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -63,7 +50,7 @@
     lt = "lsd --tree";
     gs = "git status";
     gd = "git diff";
-    nrs = "sudo nixos-rebuild switch";
+    nrs = "sudo nixos-rebuild switch --flake ~/git/dotfiles/nixos";
   };
 
   environment.variables.EDITOR = "nvim";
