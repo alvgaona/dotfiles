@@ -33,6 +33,7 @@ in
     htop
     tree
     lsd
+    ghostty.terminfo
     nodejs_24
     unstable.pixi
     unstable.pi-coding-agent
