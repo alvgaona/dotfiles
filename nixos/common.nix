@@ -51,6 +51,7 @@
     gs = "git status";
     gd = "git diff";
     nrs = "sudo nixos-rebuild switch --flake ~/git/dotfiles/nixos";
+    nfu = "nix flake update --flake ~/git/dotfiles/nixos";
   };
 
   environment.variables.EDITOR = "nvim";

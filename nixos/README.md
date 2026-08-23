@@ -24,12 +24,14 @@ machine's hostname, so the same command works on every host.
 
 ## Updating
 
+These act on the flake in the current directory, so pass `--flake` to run them from anywhere:
+
 ```sh
-nix flake update                    # bump every input
-nix flake update nixpkgs-unstable   # bump just one
+nix flake update --flake ~/git/dotfiles/nixos                    # bump every input
+nix flake update nixpkgs-unstable --flake ~/git/dotfiles/nixos   # bump just one
 ```
 
-Then rebuild. `flake.lock` records the exact revisions, so committing it is what lets another machine
+Aliased to `nfu`. Then rebuild with `nrs`. `flake.lock` records the exact revisions, so committing it is what lets another machine
 reproduce this system.
 
 ## Adding a host
