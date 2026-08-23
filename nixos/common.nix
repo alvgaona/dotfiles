@@ -20,7 +20,6 @@
 
   environment.systemPackages = with pkgs; [
     gh
-    git
     neovim
     curl
     wget
@@ -39,6 +38,14 @@
 
   programs.zsh.enable = true;
   programs.zoxide.enable = true;
+
+  programs.git = {
+    enable = true;
+    config.user = {
+      name = "Alvaro Gaona";
+      email = "alvgaona@gmail.com";
+    };
+  };
   users.defaultUserShell = pkgs.zsh;
 
   # Starship's prompt draws glyphs that plain fonts do not carry.
