@@ -12,6 +12,12 @@
     options = "--delete-older-than 30d";
   };
 
+  # Hardlink identical files in the store.
+  nix.optimise = {
+    automatic = true;
+    dates = [ "weekly" ];
+  };
+
   environment.systemPackages = with pkgs; [
     gh
     git
@@ -32,7 +38,11 @@
   ];
 
   programs.zsh.enable = true;
+  programs.zoxide.enable = true;
   users.defaultUserShell = pkgs.zsh;
+
+  # Starship's prompt draws glyphs that plain fonts do not carry.
+  fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
 
   programs.starship = {
     enable = true;
