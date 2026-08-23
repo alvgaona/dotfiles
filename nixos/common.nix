@@ -34,7 +34,6 @@
     ripgrep
     fd
     jq
-    htop
     btop
     tree
     lsd
