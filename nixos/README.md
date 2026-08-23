@@ -39,5 +39,8 @@ so nothing is in the binary cache and everything builds from source.
 ## Starship on NixOS
 
 `programs.starship.settings` here generates a read-only `starship.toml` in the nix store, but starship prefers
-`~/.config/starship.toml` if it exists. Running `install.sh` on a NixOS host symlinks that file and it wins over
-this module. Pick one — either drop `programs.starship.settings` or don't link starship in `install.sh`.
+`~/.config/starship.toml` if it exists — so linking the repo's copy would silently shadow the module.
+
+`install.sh` therefore skips that one link when `/etc/NIXOS` is present. The module owns the prompt on NixOS,
+the repo file owns it everywhere else. The two are kept in sync by hand; they currently differ only in
+`add_newline`, which is `false` on NixOS for a compact prompt.

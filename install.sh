@@ -22,7 +22,14 @@ link "$DOTFILES/zsh/zshenv"               "$HOME/.zshenv"
 link "$DOTFILES/zsh/zprofile"             "$HOME/.zprofile"
 link "$DOTFILES/zsh/zsh_aliases"          "$HOME/.zsh_aliases"
 link "$DOTFILES/zsh/zsh_functions/rosenv" "$HOME/.zsh_functions/rosenv"
-link "$DOTFILES/starship/starship.toml"   "$HOME/.config/starship.toml"
+
+# On NixOS, programs.starship in nixos/common.nix owns the config. Linking it here would
+# shadow the generated one, because starship prefers ~/.config/starship.toml.
+if [ -e /etc/NIXOS ]; then
+    echo "skipped: starship.toml (owned by programs.starship)"
+else
+    link "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
+fi
 
 mkdir -p "$HOME/.cache/zsh"
 
