@@ -32,10 +32,45 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1787360063,
+        "narHash": "sha256-dt4WdcvsA8/RCe+VZZwqU0X+XMM3wBbGCWA0/sFWzGo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2c423e03bbafcff28bfadc6781a4a8257f205cb5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "rewire": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1787781092,
+        "narHash": "sha256-mIhYQm4Z0GAAmhWAjkTtUsLQ6Aj10uXLlrTX7tec+Qk=",
+        "owner": "rewire-run",
+        "repo": "rewire",
+        "rev": "6f9af1ad55232e8091e6d49d0292d163ea1dcedc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rewire-run",
+        "repo": "rewire",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "rewire": "rewire"
       }
     }
   },

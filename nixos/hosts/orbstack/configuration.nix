@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, modulesPath, ... }:
+{ config, pkgs, modulesPath, rewire, ... }:
 
 {
   imports =
@@ -49,6 +49,7 @@
   environment.systemPackages = [
     pkgs.ghostty
     pkgs.unstable.zed-editor
+    rewire.packages.aarch64-linux.default
   ];
 
   # This being `true` leads to a few nasty bugs, change at your own risk!

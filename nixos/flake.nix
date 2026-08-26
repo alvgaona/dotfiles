@@ -4,15 +4,17 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    rewire.url = "github:rewire-run/rewire";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, rewire, ... }: {
     # The portable module, so other flakes can import it directly.
     nixosModules.common = ./common.nix;
 
     # Named for the host's hostname so `nixos-rebuild --flake <dir>` selects it automatically.
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
+      specialArgs = { inherit rewire; };
       modules = [
         ./hosts/orbstack/configuration.nix
         {
